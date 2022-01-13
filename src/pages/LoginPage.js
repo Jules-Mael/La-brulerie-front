@@ -1,13 +1,27 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+import AuthApi from "../Service/authApi";
+import AuthContext from "../context/authContext";
+
 
 
 
 const LoginPage = ({ history}) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+
+    const context = useContext(AuthContext);
+
     const handleSubmit = async e => {
-        e.preventDefault();
-        history.replace("/")
+        try {
+            e.preventDefault();
+            const token = await AuthApi.login(username,password);
+            localStorage.setItem("token",token);
+            context.setAuth(true);
+            history.replace("/");
+        }catch (e) {
+            alert("Indentifiants invalides")
+            console.log(e)
+        }
     }
 
     return (
