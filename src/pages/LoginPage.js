@@ -16,7 +16,7 @@ const LoginPage = ({ history}) => {
             e.preventDefault();
             const token = await AuthApi.login(username,password);
             localStorage.setItem("token",token);
-            context.setAuth(true);
+            context.setIsAuthenticated(true);
             history.replace("/");
         }catch (e) {
             alert("Indentifiants invalides")

@@ -1,8 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Link} from "react-router-dom";
+import AuthContext from "../context/authContext";
+import jwtDecode from "jwt-decode";
+import AuthApi from "../Service/authApi";
 
 
-const Header = () => {
+const Header = ({history}) => {
+
+    const context = useContext(AuthContext);
+    let payload = ""
+    if (context.isAuth) payload = jwtDecode(localStorage.getItem("token"));
+
+    const handleLogOut = () => {
+        AuthApi.logOut()
+        context.setIsAuthenticated(false);
+        //Problème avec history.push alors en commentaire pour le moment.
+        //history.push("/login")
+    }
 
 
     return (
@@ -29,10 +43,13 @@ const Header = () => {
                 <div>
                     <ul className="navbar-nav ">
                         <li className="nav-item">
-                            <Link className="nav-link btn btn-outline-primary me-2" to="/login">Connexion</Link>
-                        </li>
-                        <li className="nav-item">
-                            <button className="nav-link btn btn-outline-warning" >Déconnexion</button>
+                            {
+                                context.isAuthenticated && (
+                                    <button onClick={handleLogOut} className="nav-link btn btn-outline-warning" >Déconnexion</button>
+                                ) || (
+                                    <Link className="nav-link btn btn-outline-primary me-2" to="/login">Connexion</Link>
+                                )
+                            }
                         </li>
                     </ul>
                 </div>

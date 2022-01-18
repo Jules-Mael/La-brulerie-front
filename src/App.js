@@ -9,16 +9,30 @@ import ProduitsPage from "./pages/ProduitsPage";
 import DetailProduitPage from "./pages/DetailProduitPage";
 import ProduitOfCategoriePage from "./pages/ProduitOfCategoriePage";
 import LoginPage from "./pages/LoginPage";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import authApi from "./Service/authApi";
 import AuthenticatedContext from "./context/authContext";
+import AuthApi from "./Service/authApi";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(authApi.isAuthenticated());
+    const [powerRole, setPowerRole] = useState();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            const payload = AuthApi.getPayload();
+            setPowerRole(payload["rolePower"])
+        } else {
+            setPowerRole(0);
+        }
+    }, [isAuthenticated])
 
     const AuthentifiatedContextValue = {
         isAuthenticated: isAuthenticated,
         setIsAuthenticated: setIsAuthenticated,
+
+        powerRole: powerRole,
+        setPowerRole: setPowerRole,
     }
 
   return (

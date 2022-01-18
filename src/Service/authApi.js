@@ -18,4 +18,8 @@ const logOut = () => {
     localStorage.removeItem("token");
 }
 
-export default { login, isAuthenticated, logOut }
+const getPayload = () => {
+    return jwtDecode(localStorage.getItem("token"));
+}
+
+export default { login, isAuthenticated, logOut, getPayload }
