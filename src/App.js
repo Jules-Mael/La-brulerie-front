@@ -1,7 +1,7 @@
 //import './App.css';
 
 import Header from "./components/header";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, withRouter} from "react-router-dom";
 import CategoriesPage from "./pages/CategoriesPage";
 import AccueilPage from "./pages/AccueilPage";
 import ErrorPage from "./pages/ErrorPage";
@@ -13,6 +13,7 @@ import {useEffect, useState} from "react";
 import authApi from "./Service/authApi";
 import AuthenticatedContext from "./context/authContext";
 import AuthApi from "./Service/authApi";
+import RedacteurPage from "./pages/RedacteurPage";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(authApi.isAuthenticated());
@@ -35,10 +36,12 @@ function App() {
         setPowerRole: setPowerRole,
     }
 
+    const HeaderWithRouter = withRouter(Header);
+
   return (
       <AuthenticatedContext.Provider value={AuthentifiatedContextValue}>
           <BrowserRouter>
-              <Header/>
+              <HeaderWithRouter/>
               <Switch>
                   <Route exact path="/" component={AccueilPage}/>
                   <Route exact path="/categories" component={CategoriesPage}/>
@@ -46,6 +49,7 @@ function App() {
                   <Route exact path="/produits" component={ProduitsPage}/>
                   <Route path="/produits/:idProduit" component={DetailProduitPage}/>
                   <Route path="/login" component={LoginPage}/>
+                  <Route path="/redacteurs" component={RedacteurPage}/>
                   <Route component={ErrorPage}/>
               </Switch>
           </BrowserRouter>

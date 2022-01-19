@@ -1,35 +1,34 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import redacteurApi from "../Service/redacteurApi";
 
 const RedacteurPage = () => {
 
-    const [produits, setProduits] = useState([]);
+    const [redacteurs, setRedacteur] = useState([]);
 
 
-    const fetchProduits = async () => {
+    const fetchRedacteurs = async () => {
         try {
-            const _produits = await produitApi.getProduits();
-            setProduits(_produits)
+            const _redacteurs =await redacteurApi.getRedacteurs();
+            setRedacteur(_redacteurs)
 
         } catch ($error) {
             console.log($error)
         }
     }
 
-    useEffect(() => {
-        fetchProduits();
-    }, [])
-
-
+    useEffect( () => {
+        fetchRedacteurs();
+    },[])
     return (
         <>
-            <h1 className="text-center">Liste des produits :</h1>
+            <h1 className="text-center">Liste des rédacteurs :</h1>
 
             <ul className="list-unstyled ms-5">
                 {
-                    produits.map(produit =>{
+                    redacteurs.map(redacteur =>{
+                        console.log("redacteur", redacteur)
                         return (
-                            <li key={produit.idProduit} className="mb-2"><Link className="btn btn-primary" to={`/produits/${produit.idProduit}`} role="button">{produit.libelleProduit}</Link></li>
+                            <li key={redacteur.idEmploye} className="mb-2">{redacteur.nom} {redacteur.prenom}</li>
                         )
                     })
                 }

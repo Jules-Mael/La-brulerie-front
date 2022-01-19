@@ -23,17 +23,28 @@ const CategoriesPage = () => {
 
     return (
       <>
-          <h1 className="text-center">Page des catégories</h1>
+          <h1 className="text-center">Page de toutes les catégorie : </h1>
 
-          <ul className="list-unstyled ms-5">
-              {
-                  categories.map(categorie =>{
+          <div className="container">
+              <div className="row">
+                  {categories.map((categorie) => {
                       return (
-                          <li key={categorie.idCategorie} className="mb-2"><Link className="btn btn-primary" to={`/categorie/${categorie.libelleCategorie}`} role="button">{categorie.libelleCategorie}</Link></li>
+                      <div className="col-md-4 col-sm-6 mb-3" key={categorie.idCategorie}>
+                          <div className="card text-center mt-3">
+                              <img src="https://www.cafeshenri.fr/sites/default/files/the_delicieux.jpg" className="card-img-top" alt="..."/>
+                              <div className="card-body">
+                                  <h5 className="card-title">
+                                      {categorie.libelleCategorie}
+                                  </h5>
+                                  <Link to={`/categorie/${categorie.libelleCategorie}`}
+                                        className="btn btn-primary m-2">Voir</Link>
+                              </div>
+                          </div>
+                      </div>
                       )
-                  })
-              }
-          </ul>
+                  })}
+              </div>
+          </div>
       </>
     );
 }

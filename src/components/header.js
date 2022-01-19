@@ -14,8 +14,7 @@ const Header = ({history}) => {
     const handleLogOut = () => {
         AuthApi.logOut()
         context.setIsAuthenticated(false);
-        //Problème avec history.push alors en commentaire pour le moment.
-        //history.push("/login")
+        history.push("/login")
     }
 
 

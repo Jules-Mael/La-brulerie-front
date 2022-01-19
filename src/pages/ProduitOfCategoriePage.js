@@ -30,17 +30,26 @@ const ProduitOfCategoriePage = () => {
 
             { (produits.length >0) ? (
 
-                <ul className="list-unstyled ms-5">
-
-                    {produits.map(produit => {
-                        return (
-                            <li key={produit.idProduit} className="mb-2">
-                                <Link className="btn btn-primary" to={`/produits/${produit.idProduit}`} role="button">{produit.libelleProduit}</Link>
-                            </li>
-                        )
-                    }
-                    )}
-                </ul>
+                <div className="container">
+                    <div className="row">
+                        {produits.map((produit) => {
+                            return (
+                                <div className="col-md-4 col-sm-6 mb-3" key={produit.idProduit}>
+                                    <div className="card text-center mt-3">
+                                        <img src="https://png.pngtree.com/png-vector/20190925/ourlarge/pngtree-tea-coffee-logo-badge-png-image_1737569.jpg" className="card-img-top" alt="..."/>
+                                        <div className="card-body">
+                                            <h5 className="card-title">
+                                                {produit.libelleProduit}
+                                            </h5>
+                                            <Link to={`/produits/${produit.idProduit}`}
+                                                  className="btn btn-primary m-2">Voir</Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
                 ) : (
                 <h1 className="badge bg-warning fs-3 mt-5">/!\Pas de produit pour cette catégorie /!\</h1>
                 )
