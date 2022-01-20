@@ -38,16 +38,26 @@ const DetailProduitPage = () => {
 
 
     return (
-        <div className="text-center">
-            <h1>{produit.libelleProduit}</h1>
-            <h5>Categorie : {libelleCategorie}</h5>
-            <h5>Prix : {produit.prixUnitaireHt} €</h5>
+        <>
+            <div className="container">
+                <div className="row">
+                    <div className="col text-end">
+                        <img width="300" src="https://png.pngtree.com/png-vector/20190925/ourlarge/pngtree-tea-coffee-logo-badge-png-image_1737569.jpg" alt=""/>
+                    </div>
+                    <div className="col">
+                        <h1>{produit.libelleProduit}</h1>
+                        <h5>Categorie : {libelleCategorie}</h5>
+                        <h5>Prix : {produit.prixUnitaireHt} €</h5>
 
-            {(produit.descriptionProduit && (
-                <p>Description : {produit.descriptionProduit}</p>
-            ))}
+                        {(produit.descriptionProduit && (
+                            <p>{produit.descriptionProduit}</p>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </>
 
-        </div>
+
     )
 }
 

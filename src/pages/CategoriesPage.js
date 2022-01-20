@@ -37,7 +37,7 @@ const CategoriesPage = () => {
                                       {categorie.libelleCategorie}
                                   </h5>
                                   <Link to={`/categorie/${categorie.libelleCategorie}`}
-                                        className="btn btn-primary m-2">Voir</Link>
+                                        className="btn btn-primary m-2">Choisir cette catégorie</Link>
                               </div>
                           </div>
                       </div>

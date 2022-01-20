@@ -17,14 +17,14 @@ import RedacteurPage from "./pages/RedacteurPage";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(authApi.isAuthenticated());
-    const [powerRole, setPowerRole] = useState();
+    const [idRole, setIdRole] = useState();
 
     useEffect(() => {
         if (isAuthenticated) {
             const payload = AuthApi.getPayload();
-            setPowerRole(payload["rolePower"])
+            setIdRole(payload["idRole"])
         } else {
-            setPowerRole(0);
+            setIdRole(0);
         }
     }, [isAuthenticated])
 
@@ -32,8 +32,8 @@ function App() {
         isAuthenticated: isAuthenticated,
         setIsAuthenticated: setIsAuthenticated,
 
-        powerRole: powerRole,
-        setPowerRole: setPowerRole,
+        idRole: idRole,
+        setIdRole: setIdRole,
     }
 
     const HeaderWithRouter = withRouter(Header);

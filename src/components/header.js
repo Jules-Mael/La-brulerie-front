@@ -37,6 +37,20 @@ const Header = ({history}) => {
                         <li className="nav-item">
                             <Link className="nav-link active" to="/produits">Produits</Link>
                         </li>
+                        {
+                            context.idRole >= 1 && (
+                                <li>
+                                    <p>Rubrique et article</p>
+                                </li>
+                            )
+                        }
+                        {
+                            context.idRole === 2 && (
+                                <li className="nav-item">
+                                    <Link className="nav-link active" to="/redacteurs">Rédacteurs</Link>
+                                </li>
+                            )
+                        }
                     </ul>
                 </div>
                 <div>

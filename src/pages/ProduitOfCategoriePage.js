@@ -42,7 +42,7 @@ const ProduitOfCategoriePage = () => {
                                                 {produit.libelleProduit}
                                             </h5>
                                             <Link to={`/produits/${produit.idProduit}`}
-                                                  className="btn btn-primary m-2">Voir</Link>
+                                                  className="btn btn-primary m-2">Détail</Link>
                                         </div>
                                     </div>
                                 </div>
