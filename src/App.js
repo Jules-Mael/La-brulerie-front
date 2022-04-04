@@ -14,6 +14,7 @@ import authApi from "./Service/authApi";
 import AuthenticatedContext from "./context/authContext";
 import AuthApi from "./Service/authApi";
 import RedacteurPage from "./pages/RedacteurPage";
+import RubriquesPage from "./pages/RubriquesPage";
 
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(authApi.isAuthenticated());
@@ -50,6 +51,7 @@ function App() {
                   <Route path="/produits/:idProduit" component={DetailProduitPage}/>
                   <Route path="/login" component={LoginPage}/>
                   <Route path="/redacteurs" component={RedacteurPage}/>
+                  <Route path="/rubriques" component={RubriquesPage}/>
                   <Route component={ErrorPage}/>
               </Switch>
           </BrowserRouter>

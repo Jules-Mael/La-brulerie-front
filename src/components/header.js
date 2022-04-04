@@ -9,12 +9,13 @@ const Header = ({history}) => {
 
     const context = useContext(AuthContext);
     let payload = ""
-    if (context.isAuth) payload = jwtDecode(localStorage.getItem("token"));
+    if (context.isAuthenticated) payload = jwtDecode(localStorage.getItem("token"));
+    console.log("payload", payload)
 
     const handleLogOut = () => {
         AuthApi.logOut()
         context.setIsAuthenticated(false);
-        history.push("/login")
+        history.replace("/login")
     }
 
 
@@ -39,8 +40,8 @@ const Header = ({history}) => {
                         </li>
                         {
                             context.idRole >= 1 && (
-                                <li>
-                                    <p>Rubrique et article</p>
+                                <li className="nav-item">
+                                    <Link className="nav-link active" to="/rubriques">Rubriques</Link>
                                 </li>
                             )
                         }
@@ -58,7 +59,9 @@ const Header = ({history}) => {
                         <li className="nav-item">
                             {
                                 context.isAuthenticated && (
-                                    <button onClick={handleLogOut} className="nav-link btn btn-outline-warning" >Déconnexion</button>
+                                    <>
+                                        <button onClick={handleLogOut} className="nav-link btn btn-outline-warning" >Déconnexion</button>
+                                    </>
                                 ) || (
                                     <Link className="nav-link btn btn-outline-primary me-2" to="/login">Connexion</Link>
                                 )
