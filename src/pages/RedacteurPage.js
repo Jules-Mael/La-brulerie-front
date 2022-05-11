@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import redacteurApi from "../Service/redacteurApi";
+import {Link} from "react-router-dom";
 
 const RedacteurPage = () => {
 
@@ -19,6 +20,8 @@ const RedacteurPage = () => {
     useEffect( () => {
         fetchRedacteurs();
     },[])
+
+
     return (
         <>
             <h1 className="text-center">Liste des rédacteurs :</h1>
@@ -28,12 +31,25 @@ const RedacteurPage = () => {
                 {
                     redacteurs.map(redacteur =>{
                         return (
-                            <li key={redacteur.idEmploye} className="mb-2">{redacteur.nom} {redacteur.prenom} btn modifier, reset le mdp et suppr</li>
+                            <>
+                                <span>
+                                    <li key={redacteur.idEmploye} className="mb-2 mt-3">{redacteur.nom} {redacteur.prenom}</li>
+                                    <button className="btn btn-sm btn-outline-success text-center m-1">
+                                        Modifier
+                                    </button>
+                                    <button className="btn btn-sm btn-outline-success text-center m-1">
+                                        Réinitialiser le mot de passe
+                                    </button>
+                                    <button className="btn btn-sm btn-outline-danger text-center m-1">
+                                        Supprimer
+                                    </button>
+                                </span>
+                            </>
+
                         )
                     })
                 }
             </ul>
-            <p>Un bouton crée</p>
         </>
     )
 }

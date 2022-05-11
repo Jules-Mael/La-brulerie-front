@@ -6,4 +6,10 @@ const getRedacteurs = () => {
         .then(response => response.data)
 }
 
-export default {getRedacteurs};
+const deleteRedacteur = (idRedacteur) =>{
+    return axios
+        .post("redacteurs/delete/{idRedacteur}")
+        .then(response => response.data)
+}
+
+export default {getRedacteurs, deleteRedacteur };

@@ -23,7 +23,7 @@ const CategoriesPage = () => {
 
     return (
       <>
-          <h1 className="text-center">Page de toutes les catégorie : </h1>
+          <h1 className="text-center">Page de toutes les catégories : </h1>
 
           <div className="container">
               <div className="row">
